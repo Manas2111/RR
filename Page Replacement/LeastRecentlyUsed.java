@@ -6,7 +6,7 @@ public class LeastRecentlyUsed {
 		ArrayList<Integer> arr = new ArrayList<>();
 		int noofpages, capacity, hit = 0, fault = 0, index = 0;
 		boolean isFull = false;
-		double hitRatio, mixRatio;
+		double hitRatio, faultRatio;
 		System.out.print("Enter the number of pages you want to enter: ");
 		noofpages = sc.nextInt();
 		int pages[] = new int[noofpages];
@@ -68,9 +68,9 @@ public class LeastRecentlyUsed {
 		
 		System.out.println("----------------------------------------------------------------------"); 
 		hitRatio = ((double)hit / noofpages) * 100;
-		mixRatio = ((double)fault / noofpages) * 100;
+		faultRatio = ((double)fault / noofpages) * 100;
 		System.out.println("Page Fault: " + fault + "\nPage Hit: " + hit);
-		System.out.printf("Hit Ratio:%.2f \nMix Ratio:%.2f ", hitRatio, mixRatio);
+		System.out.printf("Hit Ratio:%.2f \nFault Ratio:%.2f ", hitRatio, faultRatio);
 
 	}
 }

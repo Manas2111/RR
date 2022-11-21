@@ -7,7 +7,7 @@ public class FIFO {
 			Scanner sc=new Scanner(System.in);
 			int noofpages,capacity,index=0;
 			int hit=0,fault=0;
-			double mixRatio,hitRatio;
+			double faultRatio,hitRatio;
 			System.out.print("Enter the number of pages you want to enter: ");
 			noofpages=sc.nextInt();
 			int pages[]=new int[noofpages];
@@ -56,10 +56,10 @@ public class FIFO {
 			}
 
 			System.out.println("----------------------------------------------------------------------"); 
-			mixRatio=((double)fault/noofpages)*100;
+			faultRatio=((double)fault/noofpages)*100;
 			hitRatio=((double)hit/noofpages)*100;
 			System.out.println("Page Fault: "+fault+"\nPage Hit: "+hit);
-			System.out.printf("Hit Ratio:%.2f \nMix Ratio:%.2f ",hitRatio,mixRatio);
+			System.out.printf("Hit Ratio:%.2f \nFault Ratio:%.2f ",hitRatio,faultRatio);
 		}
 
 	}
