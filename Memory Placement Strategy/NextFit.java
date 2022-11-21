@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class NextFit {
 	
-		static void NextFit(int blockSize[], int m, int processSize[], int n) {
+		static void NextFit(int blockSize[], int m, int processSize[], int n,int remblockSize[]) {
 		
 			int allocation[] = new int[n], j = 0;
 			Arrays.fill(allocation, -1);
@@ -13,8 +13,8 @@ public class NextFit {
 					count++;
 					if (blockSize[j] >= processSize[i]) {
 						allocation[i] = j;
-						
 						blockSize[j] -= processSize[i];
+						remblockSize[i]=blockSize[j];
 						break;
 					}
 					j=(j + 1) % m; 
@@ -22,13 +22,13 @@ public class NextFit {
 				}
 			}
 
-			System.out.print("\nProcess No.\tProcess Size\tBlock no.\n");
+			System.out.println("\nProcess No.\tProcess Size\tBlock no.\tRemaninig Block Size");
 			for (int i = 0; i < n; i++) {
 				System.out.print( i + 1 + "\t\t" + processSize[i]+ "\t\t");
 				if (allocation[i] != -1) {
-					System.out.print(allocation[i] + 1);
+					System.out.print((allocation[i] + 1)+"\t\t"+remblockSize[i]);
 				} else {
-					System.out.print("Not Allocated");
+					System.out.print("Not Allocated"+"\t"+remblockSize[i]);
 				}
 				System.out.println("");
 			}
@@ -40,6 +40,7 @@ public class NextFit {
 		System.out.print("Enter how many number of blocks you want to enter:");
 		m=in.nextInt();
 		int blockSize[]=new int[m];
+		int remblockSize[]=new int[m];
 		for(int i=0;i<m;i++) {
 			System.out.print("Enter Data "+(i+1)+":");
 			num=in.nextInt();
@@ -53,7 +54,7 @@ public class NextFit {
 			num=in.nextInt();
 			processSize[i]=num;
 		}
-		NextFit(blockSize, m, processSize, n);
+		NextFit(blockSize, m, processSize, n,remblockSize);
 	}
 
 }

@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
 public class FirstFit {
-		static void firstFit(int blockSize[], int m,int processSize[], int n)
-		{
+		static void firstFit(int blockSize[], int m,int processSize[], int n,int remblockSize[])
+		{	
 			int allocation[] = new int[n];
 			for (int i = 0; i < allocation.length; i++) {
 				allocation[i] = -1;
@@ -15,19 +15,20 @@ public class FirstFit {
 					{
 						allocation[i] = j;
 						blockSize[j] -= processSize[i];
+						remblockSize[i]=blockSize[j];
 						break;
 					}
 				}
 			}		
-			System.out.println("\nProcess No.\tProcess Size\tBlock no.");
+			System.out.println("\nProcess No.\tProcess Size\tBlock no.\tRemaninig Block Size");
 			for (int i = 0; i < n; i++)
 			{
 				System.out.print(" " + (i+1) + "\t\t" +processSize[i] + "\t\t");
 				if (allocation[i] != -1) {
-					System.out.print(allocation[i] + 1);
+					System.out.print((allocation[i] + 1)+"\t\t"+remblockSize[i]);
 				}
 				else {
-					System.out.print("Not Allocated");
+					System.out.print("Not Allocated"+"\t"+remblockSize[i]);
 					}
 				System.out.println();
 			}
@@ -39,6 +40,7 @@ public class FirstFit {
 		System.out.print("Enter how many number of blocks you want to enter:");
 		m=in.nextInt();
 		int blockSize[]=new int[m];
+		int remblockSize[]=new int[m];
 		for(int i=0;i<m;i++) {
 			System.out.print("Enter Data "+(i+1)+":");
 			num=in.nextInt();
@@ -52,7 +54,7 @@ public class FirstFit {
 			num=in.nextInt();
 			processSize[i]=num;
 		}
-		firstFit(blockSize, m, processSize, n);
+		firstFit(blockSize, m, processSize, n,remblockSize);
 
 	}
 
